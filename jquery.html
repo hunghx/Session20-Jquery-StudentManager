@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bg-red {
+            background-color: red;
+            font-size: 20px;
+
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .box {
+            width: 500px;
+            height: 500px;
+            background: orange;
+        }
+    </style>
+</head>
+
+
+<body>
+    <p id="paragraph" class="text"></p>
+    <h2>Click me</h2>
+    <form class="hide">
+        <input id="name" type="text">
+        <button type="submit">Send</button>
+    </form>
+
+    <div class="cha parent">
+        <div class="con"> Đây là phần tử dược chọn</div>
+    </div>
+    <button id="api">Get data api</button>
+    <div class="box">Box</div>
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+    <script>
+        // code jquery write here
+        $(document).ready(function () {
+            //focus vào ô input
+            $("input").focus();
+
+
+            $("#paragraph").text("Đi học đi");
+            //Selector
+            // $("p").hide();
+            // $("p").show();
+            $(".text").addClass("Paragraph")
+
+            // $("h2").click(function () {
+            //     alert("bạn vừa click vào h2")
+            // })
+            // $("h2").on('click', function () {
+            //     alert("bạn vừa click vào h2")
+            // })
+
+            // toggle
+            // $(".box").hide();
+
+            $("h2").click(function () {
+                $(".box").slideDown(5000, function () {
+                    $("h2").css("font-size", "30px")
+                })
+            })
+
+
+            // keyboard 
+            // $(window).keydown(function (e) {
+            //     console.log(e.key);
+            //     console.log(e.keyCode);
+            // })
+
+            $("form").on('submit', function (e) {
+                e.preventDefault();
+                let val = $("input").val();
+                alert(val)
+            })
+            // remove
+            // $(".con").remove();
+            // empty
+            // $(".cha").empty();
+
+            // CSS 
+            // thay đổi class của 1 phần tử
+            $("h2").addClass("bg-red");
+            $("form").removeClass("hide");
+            $(".cha").toggleClass("parent");
+            $(".box").width("250px");
+            // $(".box").innerHeight("1000px")
+            //animate
+            $(".con").click(function () {
+                console.log("chạy hàm này");
+                $('.box').delay(5000).animate({ opacity: 0.1, height: "100px" }, 2000, function () {
+                    $('p').css("color", "green")
+                }
+                );
+            })
+
+            $("#api").click(function () {
+                $.ajax({
+                    url: "https://jsonplaceholder.typicode.com/posts",
+                    type: "POST",
+                    dataType: "JSON"
+                }).done(function (response) {
+                    console.log(response);
+                })
+            })
+
+        })
+
+        //
+        // $(window).on('load', function () {
+        //     $("#paragraph").css({ "margin": "100px", "color": "red" });
+        // })
+
+    </script>
+</body>
+
+</html>
